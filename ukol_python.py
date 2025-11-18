@@ -1,12 +1,10 @@
 #Tvým úkolem je vytvořit program pro zjednodušený výpočet daně z nemovitostí. 
 #Aplikace bude postavená na principech OOP. Tato daň se vztahuje na pozemky, bytové a komerční prostory. 
 #Výše daně se odvíjí od několika faktorů, např. typu nemovitosti, velikosti, lokalitě, kde se nemovitost nachází atd.
-
 from math import ceil
 
 #V rámci aplikace nejprve vytvoř třídu Locality, která označuje lokalitu, kde se nemovitost nachází. 
 #Třída bude mít atributy name (název katastru/obce) a locality_coefficient (tzv. místní koeficient, který se používá k výpočtu daně).
-
 class Locality:
     def __init__(self, name, locality_coefficient):
         self.name = name
@@ -14,7 +12,6 @@ class Locality:
 
 #Vytvoř třídu Property, která bude reprezentovat nějakou nemovitost. 
 #Třída bude mít atribut locality (lokalita, kde se pozemek nachází, bude to objekt třídy Locality).
-
 class Property:
     def __init__(self, locality):
         self.locality = locality
@@ -23,7 +20,6 @@ class Property:
 #Třída bude mít atributy locality, estate_type (typ pozemku), area (plocha pozemku v metrech čtverečních). 
 #Dále přidej metodu calculate_tax(), která spočítá výši daně pro pozemek a vrátí hodnotu jak celé číslo (pro zaokrouhlení použij funkci ceil() z modulu math).
 #Daň vypočítej pomocí vzorce: plocha pozemku * koeficient dle typu pozemku (atribut estate_type) * místní koeficient. 
-
 class Estate(Property):
     def __init__(self, locality, estate_type, area):
         super().__init__(locality)
@@ -36,7 +32,6 @@ class Estate(Property):
 #building site (stavební pozemek) má koeficient 9.
 #forrest (les) má koeficient 0.35,
 #garden (zahrada) má koeficient 2. 
-   
         if self.estate_type == "land":
             coef = 0.85
         elif self.estate_type == "building site":
@@ -58,7 +53,6 @@ class Estate(Property):
 #Pokud je hodnota parametru commercial True, tj. pokud jde o komerční nemovitost, vynásob celou daň číslem 2.
 
 #Příklad výpočtu: Uvažujme tedy například byt (určený k bydlení) o ploše 60 metrů čtverečních v lokalitě s koeficientem 3. Potom je daň 60 * 3 * 15 = 2700. Pokud by stejný byt byl používán k podnikání, daň by byla 60 * 3 * 15 * 2 = 5400.
-
 class Residence(Property):
     def __init__(self, locality, area, commercial):
         super().__init__(locality)
@@ -71,9 +65,7 @@ class Residence(Property):
             tax = tax * 2
         return tax
 
-
 #Vyzkoušej svůj program pomocí následujících nemovitostí:
-
 manetin = Locality("Manětín", 0.8)
 brno = Locality("Brno", 3)
 
